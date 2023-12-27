@@ -1,0 +1,49 @@
+<div>
+  <h2>{{ title }}</h2>
+  <div class="field">
+    <label for="question">Question</label>
+    <select
+      [(ngModel)]="validation.questionId"
+      class="p-dropdown w-full custom-select"
+      id="question"
+    >
+      <option *ngIf="operation === 'create'" [value]="undefined">Select an option</option>
+      <option *ngFor="let question of questions" [value]="question.id">{{ question.questionText }}</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="response">Response</label>
+    <select
+      [(ngModel)]="validation.responseId"
+      class="p-dropdown w-full custom-select"
+      id="response"
+    >
+      <option *ngIf="operation === 'create'" [value]="undefined">Select an option</option>
+      <option *ngFor="let response of responses" [value]="response.id">{{ response.response }}</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="points">Points</label>
+    <input id="points" pInputText [(ngModel)]="validation.points"
+           placeholder="Enter Points number"
+           type="number"
+           class="w-full"
+    >
+  </div>
+  <button
+    id="submit"
+    (click)="onSubmit()"
+    [disabled]="!isValidationValid()"
+    pButton
+    label="Submit"
+    class="w-full"
+  >
+  </button>
+  <button
+    (click)="onCancel()"
+    pButton
+    label="Cancel"
+    class="w-full p-button-outlined p-button-danger mt-2"
+  >
+  </button>
+</div>

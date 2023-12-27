@@ -1,0 +1,48 @@
+<p-sidebar [(visible)]="sidebarVisible" [position]="'right'" [styleClass]="'p-sidebar-md'"
+           [transitionOptions]="'300ms cubic-bezier(0,0,0.2,1)'">
+    <app-manage-media
+            (cancel)="cancel()"
+            (submit)="uploadWithSave($event)"
+            [media]="media"
+            [operation]="operation"
+    ></app-manage-media>
+</p-sidebar>
+<div class="p-3">
+    <button (click)="createMedia()"
+            class="p-button-success"
+            icon="pi pi-plus"
+            label="Create Media"
+            pButton
+    >
+    </button>
+    <div class="flex justify-content-center align-items-center flex-wrap gap-5 mt-4">
+        <app-media-card
+                (delete)="deleteMedia($event)"
+                (update)="updateMedia($event)"
+                *ngFor="let media of medias; let index = index"
+                [mediaIndex]="index"
+                [media]="media"
+        ></app-media-card>
+    </div>
+    <div *ngFor="let media of imageList">
+        <ng-container>
+            <img [src]="media.url" alt="{{ media.public_id }}"/>
+        </ng-container>
+    </div>
+    <div *ngFor="let media of videoList">
+        <ng-container>
+            <video width="320" height="240" controls>
+                <source [src]="media.url" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </ng-container>
+    </div>
+
+    <p-toast></p-toast>
+    <p-confirmDialog [style]="{width: '45vw'}"
+                     acceptButtonStyleClass="p-button-danger"
+                     acceptIcon="pi pi-trash"
+                     acceptLabel="Delete"
+                     rejectLabel="Cancel">
+    </p-confirmDialog>
+</div>

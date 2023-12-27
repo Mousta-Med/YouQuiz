@@ -1,0 +1,42 @@
+<div>
+  <h2>{{ title }}</h2>
+  <div class="field">
+    <label for="description">Description</label>
+    <input id="description" pInputText [(ngModel)]="level.description"
+           placeholder="Enter level description"
+           type="text"
+           class="w-full"
+    >
+  </div>
+  <div class="field">
+    <label for="maxPoints">Max Points</label>
+    <input id="maxPoints" pInputText [(ngModel)]="level.maxPoints"
+           placeholder="Enter level Max Points"
+           type="number"
+           class="w-full"
+    >
+  </div>
+  <div class="field">
+    <label for="minPoints">Min Points</label>
+    <input id="minPoints" pInputText [(ngModel)]="level.minPoints"
+           placeholder="Enter level Min Points"
+           type="number"
+           class="w-full"
+    >
+  </div>
+  <button
+    (click)="onSubmit()"
+    [disabled]="!isLevelValid"
+    pButton
+    label="Submit"
+    class="w-full"
+  >
+  </button>
+  <button
+    (click)="onCancel()"
+    pButton
+    label="Cancel"
+    class="w-full p-button-outlined p-button-danger mt-2"
+  >
+  </button>
+</div>

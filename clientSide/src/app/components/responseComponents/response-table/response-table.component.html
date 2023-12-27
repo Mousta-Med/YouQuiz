@@ -1,0 +1,21 @@
+<div class="mt-3">
+  <p-table [value]="responses" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Response</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template let-response pTemplate="body">
+      <tr>
+        <td>{{ response.response }}</td>
+        <td class="-m-3">
+          <button pButton pRipple type="button" icon="pi pi-pencil" (click)="onUpdate(response)"
+                  class="p-button-rounded p-button-text"></button>
+          <button pButton pRipple type="button" icon="pi pi-trash" (click)="onDelete(response)"
+                  class="p-button-rounded p-button-danger p-button-text"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

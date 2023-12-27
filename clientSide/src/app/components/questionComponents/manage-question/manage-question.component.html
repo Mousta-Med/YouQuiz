@@ -1,0 +1,86 @@
+<div>
+  <h2>{{ title }}</h2>
+  <div class="field">
+    <label for="questionText">Question</label>
+    <input id="questionText" pInputText [(ngModel)]="question.questionText"
+           placeholder="Enter Question Text"
+           type="text"
+           class="w-full"
+    >
+  </div>
+  <div class="field">
+    <label for="numberOfAnswers">Answers Number</label>
+    <input id="numberOfAnswers" pInputText [(ngModel)]="question.numberOfAnswers"
+           placeholder="Enter Number Of Answers"
+           type="number"
+           class="w-full"
+    >
+  </div>
+  <div class="field">
+    <label for="numberOfCorrectAnswers">Correct Answers Number</label>
+    <input id="numberOfCorrectAnswers" pInputText [(ngModel)]="question.numberOfCorrectAnswers"
+           placeholder="Enter Number Of Correct Answers"
+           type="number"
+           class="w-full"
+    >
+  </div>
+  <div class="field">
+    <label for="questionType">Question Type</label>
+    <select
+      [(ngModel)]="question.questionType"
+      class="p-dropdown w-full custom-select"
+      id="questionType"
+    >
+      <option *ngIf="operation === 'create'" [value]="undefined">Select an option</option>
+      <option [value]="'OneAnswer'">One Answer</option>
+      <option [value]="'MultipleAnswer'">Multiple Answer</option>
+      <option [value]="'TrueFalse'">True Or False</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="numberOfPoints">Points Number</label>
+    <input id="numberOfPoints" pInputText [(ngModel)]="question.numberOfPoints"
+           placeholder="Enter Number Of Points"
+           type="number"
+           class="w-full"
+    >
+  </div>
+  <div class="field">
+    <label for="subjectId">Subject</label>
+    <select
+      [(ngModel)]="question.subjectId"
+      class="p-dropdown w-full custom-select"
+      id="subjectId"
+    >
+      <!--      TODO solve data not showed correctly in the select-->
+      <option *ngIf="operation === 'create'" [value]="undefined">Select an option</option>
+      <option *ngFor="let optionSubject of subjects" [value]="optionSubject.id">{{ optionSubject.title }}</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="levelId">Level</label>
+    <select
+      [(ngModel)]="question.levelId"
+      class="p-dropdown w-full custom-select"
+      id="levelId"
+    >
+      <option *ngIf="operation === 'create'" [value]="undefined">Select an option</option>
+      <option *ngFor="let optionLevel of levels" [value]="optionLevel.id">{{ optionLevel.description }}</option>
+    </select>
+  </div>
+  <button
+    (click)="onSubmit()"
+    [disabled]="!isQuestionValid()"
+    pButton
+    label="Submit"
+    class="w-full"
+  >
+  </button>
+  <button
+    (click)="onCancel()"
+    pButton
+    label="Cancel"
+    class="w-full p-button-outlined p-button-danger mt-2"
+  >
+  </button>
+</div>

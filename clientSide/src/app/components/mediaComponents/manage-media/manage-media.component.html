@@ -1,0 +1,41 @@
+<div>
+  <h2>{{ title }}</h2>
+  <div class="field">
+    <label for="description">File</label>
+    <input id="description" pInputText
+           [(ngModel)]="media.mediaFile"
+           accept="image/*,video"
+           placeholder="Choose Your File"
+           type="file"
+           class="w-full"
+           (change)="handleFile($event)"
+    >
+  </div>
+  <div class="field">
+    <label for="mediaType">Question</label>
+    <select
+      (change)="validData()"
+      [(ngModel)]="media.questionId"
+      class="p-dropdown w-full custom-select"
+      id="mediaType"
+    >
+      <option *ngIf="operation === 'create'" [value]="undefined">Select an option</option>
+      <option *ngFor="let question of questions" [value]="question.id">{{question.questionText}}</option>
+    </select>
+  </div>
+  <button
+    (click)="onSubmit()"
+    [disabled]="disabled"
+    pButton
+    label="Submit"
+    class="w-full"
+  >
+  </button>
+  <button
+    (click)="onCancel()"
+    pButton
+    label="Cancel"
+    class="w-full p-button-outlined p-button-danger mt-2"
+  >
+  </button>
+</div>

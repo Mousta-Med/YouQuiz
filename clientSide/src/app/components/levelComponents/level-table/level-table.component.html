@@ -1,0 +1,25 @@
+<div class="card mt-3">
+  <p-table [columns]="cols" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns" class="py-5">
+          {{ rowData[col.field] }}
+          <div *ngIf="col.field === 'action'" class="-m-3">
+            <button pButton pRipple type="button" icon="pi pi-pencil" (click)="onUpdate(rowData['id'])"
+                    class="p-button-rounded p-button-text"></button>
+            <button pButton pRipple type="button" icon="pi pi-trash" (click)="onDelete(rowData['id'])"
+                    class="p-button-rounded p-button-danger p-button-text"></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>

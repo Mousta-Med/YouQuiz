@@ -1,0 +1,27 @@
+<div>
+  <h2>{{ title }}</h2>
+  <div class="field">
+    <label for="responseText">Response</label>
+    <input id="responseText" pInputText [(ngModel)]="response.response"
+           placeholder="Enter Response Text"
+           type="text"
+           class="w-full"
+    >
+  </div>
+
+  <button
+    (click)="onSubmit()"
+    [disabled]="!isResponseValid()"
+    pButton
+    label="Submit"
+    class="w-full"
+  >
+  </button>
+  <button
+    (click)="onCancel()"
+    pButton
+    label="Cancel"
+    class="w-full p-button-outlined p-button-danger mt-2"
+  >
+  </button>
+</div>

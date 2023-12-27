@@ -1,0 +1,28 @@
+<div class="mt-3">
+  <p-card *ngIf="media.mediaType !== 'AUDIO' && media.mediaType !== 'DOCUMENT'" header="{{media.mediaType}}"
+          subheader="Media For Question {{media.questionId}}"
+          [style]="{ width: '360px' }">
+    <ng-template pTemplate="header">
+      <div>
+        <img *ngIf="media.mediaType === 'IMAGE'" alt="Card"
+             [src]="media.src" style="width: 100%; height: 200px;object-fit: cover;"/>
+      </div>
+      <!--      <iframe *ngIf="media.mediaType === 'DOCUMENT'"  [src]="media.src"></iframe>-->
+      <div *ngIf="media.mediaType === 'VIDEO'" style="width: 100%; height: 200px; overflow: hidden;">
+        <video [volume]="0" controls="controls" style="width: 100%; height: 100%;" autoplay="autoplay">
+          <source [src]="media.src" type="video/mp4">
+        </video>
+      </div>
+      <!--      <div *ngIf="media.mediaType === 'AUDIO'" style="width: 100%; height: 200px; overflow: hidden;">-->
+      <!--        <audio [volume]="0" controls="controls" style="width: 100%; height: 100%;" autoplay="autoplay">-->
+      <!--          <source-->
+      <!--                  [src]="media.src">-->
+      <!--        </audio>-->
+      <!--      </div>-->
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button (click)="onDelete()" pButton pRipple label="Delete" type="button" icon="pi pi-trash"
+              class="p-button-danger"></button>
+    </ng-template>
+  </p-card>
+</div>
