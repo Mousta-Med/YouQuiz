@@ -1,7 +1,7 @@
 package com.springboot.youquiz.Controller;
 
 import com.springboot.youquiz.Dto.AnswerDto;
-import com.springboot.youquiz.Service.Impl.AnswerServiceImpl;
+import com.springboot.youquiz.Service.AnswerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -16,11 +16,11 @@ public class AnswerController {
 
 
     @Autowired
-    private AnswerServiceImpl answerServiceImpl;
+    private AnswerService answerService;
 
     @GetMapping
     public ResponseEntity<List<AnswerDto>> findAllAnswers() {
-        return ResponseEntity.ok(answerServiceImpl.findAll());
+        return ResponseEntity.ok(answerService.findAll());
     }
 
     @GetMapping("/paginated")
@@ -29,27 +29,27 @@ public class AnswerController {
             @RequestParam(name = "size", defaultValue = "10") int size
     ) {
         PageRequest pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(answerServiceImpl.findWithPagination(pageable).getContent());
+        return ResponseEntity.ok(answerService.findWithPagination(pageable).getContent());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AnswerDto> findOneAnswer(@PathVariable Long id) {
-        return ResponseEntity.ok(answerServiceImpl.findOne(id));
+        return ResponseEntity.ok(answerService.findOne(id));
     }
 
     @PostMapping
     public ResponseEntity<AnswerDto> saveAnswer(@Valid @RequestBody AnswerDto answerDto) {
-        return ResponseEntity.ok(answerServiceImpl.save(answerDto));
+        return ResponseEntity.ok(answerService.save(answerDto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AnswerDto> updateAnswer(@PathVariable long id, @Valid @RequestBody AnswerDto answerDto) {
-        return ResponseEntity.ok(answerServiceImpl.update(id, answerDto));
+        return ResponseEntity.ok(answerService.update(id, answerDto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAnswer(@PathVariable(name = "id") Long id) {
-        answerServiceImpl.delete(id);
+        answerService.delete(id);
         return ResponseEntity.noContent().build();
     }
 

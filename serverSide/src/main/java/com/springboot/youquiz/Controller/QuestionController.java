@@ -2,7 +2,7 @@ package com.springboot.youquiz.Controller;
 
 import com.springboot.youquiz.Dto.QuestionDto;
 import com.springboot.youquiz.Dto.RespDto.QuestionRespDto;
-import com.springboot.youquiz.Service.Impl.QuestionServiceImpl;
+import com.springboot.youquiz.Service.QuestionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -16,11 +16,11 @@ import java.util.List;
 public class QuestionController {
 
     @Autowired
-    private QuestionServiceImpl questionServiceImpl;
+    private QuestionService questionService;
 
     @GetMapping
     public ResponseEntity<List<QuestionRespDto>> getAllQuestions() {
-        return ResponseEntity.ok(questionServiceImpl.findAll());
+        return ResponseEntity.ok(questionService.findAll());
     }
 
     @GetMapping("/paginated")
@@ -29,27 +29,27 @@ public class QuestionController {
             @RequestParam(name = "size", defaultValue = "10") int size
     ) {
         PageRequest pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(questionServiceImpl.findWithPagination(pageable).getContent());
+        return ResponseEntity.ok(questionService.findWithPagination(pageable).getContent());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<QuestionRespDto> getOneQuestion(@PathVariable Long id) {
-        return ResponseEntity.ok().body(questionServiceImpl.findOne(id));
+        return ResponseEntity.ok().body(questionService.findOne(id));
     }
 
     @PostMapping
     public ResponseEntity<QuestionRespDto> addQuestion(@Valid @RequestBody QuestionDto questionDto) {
-        return ResponseEntity.ok(questionServiceImpl.save(questionDto));
+        return ResponseEntity.ok(questionService.save(questionDto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<QuestionRespDto> updateQuestion(@PathVariable long id, @Valid @RequestBody QuestionDto questionDto) {
-        return ResponseEntity.ok(questionServiceImpl.update(id, questionDto));
+        return ResponseEntity.ok(questionService.update(id, questionDto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteQuestion(@PathVariable(name = "id") Long id) {
-        questionServiceImpl.delete(id);
+        questionService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

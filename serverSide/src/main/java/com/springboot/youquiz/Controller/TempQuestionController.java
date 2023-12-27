@@ -1,7 +1,7 @@
 package com.springboot.youquiz.Controller;
 
 import com.springboot.youquiz.Dto.TempQuestionDto;
-import com.springboot.youquiz.Service.Impl.TempQuestionServiceImpl;
+import com.springboot.youquiz.Service.TempQuestionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,11 +15,11 @@ import java.util.List;
 public class TempQuestionController {
 
     @Autowired
-    private TempQuestionServiceImpl tempQuestionServiceImpl;
+    private TempQuestionService tempQuestionService;
 
     @GetMapping
     public ResponseEntity<List<TempQuestionDto>> findAllTempQuestions() {
-        return ResponseEntity.ok(tempQuestionServiceImpl.findAll());
+        return ResponseEntity.ok(tempQuestionService.findAll());
     }
 
     @GetMapping("/paginated")
@@ -28,27 +28,27 @@ public class TempQuestionController {
             @RequestParam(name = "size", defaultValue = "10") int size
     ) {
         PageRequest pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(tempQuestionServiceImpl.findWithPagination(pageable).getContent());
+        return ResponseEntity.ok(tempQuestionService.findWithPagination(pageable).getContent());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TempQuestionDto> findOneTempQuestion(@PathVariable Long id) {
-        return ResponseEntity.ok(tempQuestionServiceImpl.findOne(id));
+        return ResponseEntity.ok(tempQuestionService.findOne(id));
     }
 
     @PostMapping
     public ResponseEntity<TempQuestionDto> saveTempQuestion(@Valid @RequestBody TempQuestionDto tempQuestionDto) {
-        return ResponseEntity.ok(tempQuestionServiceImpl.save(tempQuestionDto));
+        return ResponseEntity.ok(tempQuestionService.save(tempQuestionDto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TempQuestionDto> updateTempQuestion(@PathVariable long id, @Valid @RequestBody TempQuestionDto tempQuestionDto) {
-        return ResponseEntity.ok(tempQuestionServiceImpl.update(id, tempQuestionDto));
+        return ResponseEntity.ok(tempQuestionService.update(id, tempQuestionDto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTempQuestion(@PathVariable(name = "id") Long id) {
-        tempQuestionServiceImpl.delete(id);
+        tempQuestionService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

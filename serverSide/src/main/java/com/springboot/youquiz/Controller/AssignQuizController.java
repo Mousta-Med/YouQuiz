@@ -2,7 +2,7 @@ package com.springboot.youquiz.Controller;
 
 import com.springboot.youquiz.Dto.AssignQuizDto;
 import com.springboot.youquiz.Dto.RespDto.AssignQuizRespDto;
-import com.springboot.youquiz.Service.Impl.AssignQuizServiceImpl;
+import com.springboot.youquiz.Service.AssignQuizService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,11 +15,11 @@ import java.util.List;
 @RequestMapping("/api/v1/assignQuiz")
 public class AssignQuizController {
     @Autowired
-    private AssignQuizServiceImpl assignQuizServiceImpl;
+    private AssignQuizService assignQuizService;
 
     @GetMapping
     public ResponseEntity<List<AssignQuizRespDto>> findAllAssignQuizs() {
-        return ResponseEntity.ok(assignQuizServiceImpl.findAll());
+        return ResponseEntity.ok(assignQuizService.findAll());
     }
 
     @GetMapping("/paginated")
@@ -28,27 +28,27 @@ public class AssignQuizController {
             @RequestParam(name = "size", defaultValue = "10") int size
     ) {
         PageRequest pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(assignQuizServiceImpl.findWithPagination(pageable).getContent());
+        return ResponseEntity.ok(assignQuizService.findWithPagination(pageable).getContent());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AssignQuizRespDto> findOneAssignQuiz(@PathVariable Long id) {
-        return ResponseEntity.ok(assignQuizServiceImpl.findOne(id));
+        return ResponseEntity.ok(assignQuizService.findOne(id));
     }
 
     @PostMapping
     public ResponseEntity<AssignQuizRespDto> saveAssignQuiz(@Valid @RequestBody AssignQuizDto assignQuizDto) {
-        return ResponseEntity.ok(assignQuizServiceImpl.save(assignQuizDto));
+        return ResponseEntity.ok(assignQuizService.save(assignQuizDto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AssignQuizRespDto> updateAssignQuiz(@PathVariable long id, @Valid @RequestBody AssignQuizDto assignQuizDto) {
-        return ResponseEntity.ok(assignQuizServiceImpl.update(id, assignQuizDto));
+        return ResponseEntity.ok(assignQuizService.update(id, assignQuizDto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAssignQuiz(@PathVariable(name = "id") Long id) {
-        assignQuizServiceImpl.delete(id);
+        assignQuizService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
