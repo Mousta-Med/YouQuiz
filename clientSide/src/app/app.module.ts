@@ -54,6 +54,7 @@ import { ResponseTableComponent } from './components/responseComponents/response
 import { ValidationComponent } from './components/validationComponents/validation/validation.component';
 import { ManageValidationComponent } from './components/validationComponents/manage-validation/manage-validation.component';
 import { ValidationTableComponent } from './components/validationComponents/validation-table/validation-table.component';
+import {InputSwitchModule} from "primeng/inputswitch";
 
 @NgModule({
   declarations: [
@@ -87,28 +88,29 @@ import { ValidationTableComponent } from './components/validationComponents/vali
     ManageValidationComponent,
     ValidationTableComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    AvatarModule,
-    ButtonModule,
-    RippleModule,
-    MenuModule,
-    SidebarModule,
-    InputTextModule,
-    TableModule,
-    FormsModule,
-    ToastModule,
-    ConfirmDialogModule,
-    CardModule,
-    DropdownModule,
-    DataViewModule,
-    RatingModule,
-    TagModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        AvatarModule,
+        ButtonModule,
+        RippleModule,
+        MenuModule,
+        SidebarModule,
+        InputTextModule,
+        TableModule,
+        FormsModule,
+        ToastModule,
+        ConfirmDialogModule,
+        CardModule,
+        DropdownModule,
+        DataViewModule,
+        RatingModule,
+        TagModule,
+        InputSwitchModule
+    ],
   providers: [
     LevelService,
     QuestionService,

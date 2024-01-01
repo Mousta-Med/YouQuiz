@@ -2,6 +2,7 @@ package com.springboot.youquiz.Controller;
 
 import com.springboot.youquiz.Dto.RespDto.ResponseRespDto;
 import com.springboot.youquiz.Dto.ResponseDto;
+import com.springboot.youquiz.Service.AnswerService;
 import com.springboot.youquiz.Service.ResponseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,12 @@ import java.util.List;
 @RequestMapping("/api/v1/response")
 public class ResponseController {
 
+    private final ResponseService responseService;
+
     @Autowired
-    private ResponseService responseService;
+    public ResponseController(ResponseService responseService) {
+        this.responseService = responseService;
+    }
 
     @GetMapping
     public ResponseEntity<List<ResponseRespDto>> getAllResponses() {

@@ -1,1 +1,64 @@
-<p>manage-quiz works!</p>
+<div>
+  <h2>{{ title }}</h2>
+  <div class="field">
+    <label for="successResult">Success Result</label>
+    <input [(ngModel)]="quiz.successResult" class="w-full" id="successResult"
+           pInputText
+           placeholder="Enter Success Result"
+           type="number"
+    >
+  </div>
+  <div class="field">
+    <div class="flex flex-column">
+      <label for="answersAccess">Answers Access</label>
+      <p-inputSwitch [(ngModel)]="quiz.answersAccess" id="answersAccess"></p-inputSwitch>
+    </div>
+    <div class="flex flex-column">
+      <label for="resultAccessAfterTest">Result Access After Test</label>
+      <p-inputSwitch [(ngModel)]="quiz.resultAccessAfterTest" id="resultAccessAfterTest"></p-inputSwitch>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <label for="chancesNum">Chances Number</label>
+    <input [(ngModel)]="quiz.chancesNum" class="w-full" id="chancesNum"
+           pInputText
+           placeholder="Enter Number Of chances"
+           type="number"
+    >
+
+  </div> <div class="field">
+    <label for="comment">Comment</label>
+    <input [(ngModel)]="quiz.comment" class="w-full" id="comment"
+           pInputText
+           placeholder="Enter A Comment"
+           type="text"
+    >
+  </div>
+  <div class="field">
+    <label for="teacherId">Teacher</label>
+    <select
+      [(ngModel)]="quiz.teacherId"
+      class="p-dropdown w-full custom-select"
+      id="teacherId"
+    >
+      <option *ngIf="operation === 'create'" [value]="undefined">Select an option</option>
+      <option *ngFor="let optionTeacher of teachers" [value]="optionTeacher.id">{{ optionTeacher.firstName }}</option>
+    </select>
+  </div>
+  <button
+    (click)="onSubmit()"
+    class="w-full"
+    label="Submit"
+    pButton
+  >
+  </button>
+  <button
+    (click)="onCancel()"
+    class="w-full p-button-outlined p-button-danger mt-2"
+    label="Cancel"
+    pButton
+  >
+  </button>
+</div>

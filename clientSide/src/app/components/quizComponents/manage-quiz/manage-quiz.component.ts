@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
 import {QuizDto} from "../../../models/quiz/quiz-dto.model";
 import {SubjectRespDto} from "../../../models/subject/subject-resp-dto.model";
-import {LevelRespDto} from "../../../models/level/level-resp-dto.model";
 import {SubjectService} from "../../../services/subject/subject.service";
-import {LevelService} from "../../../services/level/level.service";
+import {TeacherDto} from "../../../models/teacher-dto.model";
+import {TeacherService} from "../../../services/teacher/teacher.service";
 
 @Component({
   selector: 'app-manage-quiz',
@@ -28,11 +28,11 @@ export class ManageQuizComponent {
 
   subjects: Array<SubjectRespDto> = [];
 
-  levels: Array<LevelRespDto> = [];
+  teachers: Array<TeacherDto> = [];
 
   constructor(
     private subjectService: SubjectService,
-    private levelService: LevelService
+    private teacherService: TeacherService
   ) {
   }
 
@@ -52,10 +52,10 @@ export class ManageQuizComponent {
         }
       })
     ;
-    this.levelService.getLevels()
+    this.teacherService.getTeachers()
       .subscribe({
         next: (data) => {
-          this.levels = data;
+          this.teachers = data;
         }
       })
     ;

@@ -29,9 +29,6 @@ export class QuizDataViewComponent {
   // };
 
 
-  @Input()
-  quizs!: Array<QuizRespDto>;
-
   @Output()
   delete: EventEmitter<QuizDto> = new EventEmitter<QuizDto>();
 

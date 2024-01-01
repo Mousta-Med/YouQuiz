@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizRespDto} from "../../../models/quiz/quiz-resp-dto.model";
 import {QuizDto} from "../../../models/quiz/quiz-dto.model";
 import {QuizService} from "../../../services/quiz/quiz.service";
@@ -9,11 +9,11 @@ import {ConfirmationService, MessageService} from "primeng/api";
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss']
 })
-export class QuizComponent {
+export class QuizComponent implements OnInit{
 
   sidebarVisible = false;
 
-  quizs!: Array<QuizRespDto>;
+  quizzes!: Array<QuizRespDto>;
 
   quiz: QuizDto = {};
 
@@ -34,7 +34,7 @@ export class QuizComponent {
     this.quizService.getQuizs()
       .subscribe({
         next: (data) => {
-          this.quizs = data;
+          this.quizzes = data;
         }
       })
     ;

@@ -1,3 +1,5 @@
+import {TeacherDto} from "../teacher-dto.model";
+
 export interface QuizRespDto {
   id?: number;
   successResult?: number;
@@ -5,5 +7,5 @@ export interface QuizRespDto {
   resultAccessAfterTest?: boolean;
   chancesNum?: number;
   comment?: string;
-  // teacher?: TeacherDto;
+  teacher?: TeacherDto;
 }
