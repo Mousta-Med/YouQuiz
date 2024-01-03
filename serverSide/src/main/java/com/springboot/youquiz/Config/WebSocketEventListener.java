@@ -1,7 +1,7 @@
 package com.springboot.youquiz.Config;
 
 import com.springboot.youquiz.Enum.MessageType;
-import com.springboot.youquiz.Model.ChatMessage;
+import com.springboot.youquiz.Model.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -23,7 +23,7 @@ public class WebSocketEventListener {
         String username = (String) stompHeaderAccessor.getSessionAttributes().get("username");
         if(username != null){
             log.info("User Disconnected: {}", username);
-            var chatMessage = ChatMessage.builder()
+            var chatMessage = Message.builder()
                     .type(MessageType.LEAVE)
                     .sender(username)
                     .build();

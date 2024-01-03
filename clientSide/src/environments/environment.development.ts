@@ -7,6 +7,7 @@ export const environment = {
     questionUrl: '/api/v1/question',
     mediaUrl: '/api/v1/media',
     quizUrl: '/api/v1/quiz',
+    socketUrl: '/chat',
     teacherUrl: '/api/v1/teacher',
     responseUrl: '/api/v1/response',
     validationUrl: '/api/v1/validation',

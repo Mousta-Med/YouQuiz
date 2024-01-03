@@ -8,6 +8,7 @@ export const environment = {
     mediaUrl: '/api/v1/media',
     quizUrl: '/api/v1/quiz',
     teacherUrl: '/api/v1/teacher',
+    socketUrl: '/chat',
     responseUrl: '/api/v1/response',
     validationUrl: '/api/v1/validation',
     cloudinaryUrl: 'https://api.cloudinary.com/v1_1/',

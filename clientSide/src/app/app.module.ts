@@ -55,6 +55,7 @@ import { ValidationComponent } from './components/validationComponents/validatio
 import { ManageValidationComponent } from './components/validationComponents/manage-validation/manage-validation.component';
 import { ValidationTableComponent } from './components/validationComponents/validation-table/validation-table.component';
 import {InputSwitchModule} from "primeng/inputswitch";
+import { ChatComponent } from './components/studentComponents/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import {InputSwitchModule} from "primeng/inputswitch";
     ResponseTableComponent,
     ValidationComponent,
     ManageValidationComponent,
-    ValidationTableComponent
+    ValidationTableComponent,
+    ChatComponent
   ],
     imports: [
         BrowserModule,

@@ -10,12 +10,12 @@ import {QuestionComponent} from "./components/questionComponents/question/questi
 import {SubjectComponent} from "./components/subjectComponents/subject/subject.component";
 import {QuizComponent} from "./components/quizComponents/quiz/quiz.component";
 import {ValidationComponent} from "./components/validationComponents/validation/validation.component";
+import {ChatComponent} from "./components/studentComponents/chat/chat.component";
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-
     children: [
       {
         path: 'levels',
@@ -52,13 +52,14 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'student/chat/:userId',
+    component: ChatComponent,
+  },
+  {
     path: '**', pathMatch: 'full',
     component: PagenotfoundComponent
   },
-  {
-    path: 'student',
-    component: PagenotfoundComponent
-  },
+
 ];
 
 @NgModule({
