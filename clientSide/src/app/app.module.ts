@@ -18,7 +18,7 @@ import {TableModule} from "primeng/table";
 import {LevelService} from "./services/level/level.service";
 import {HttpClientModule} from "@angular/common/http";
 import {LevelTableComponent} from './components/levelComponents/level-table/level-table.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PagenotfoundComponent} from './components/pagenotfound/pagenotfound.component';
 import {DashboardComponent} from './components/homeComponents/dashboard/dashboard.component';
 import {HomeComponent} from './components/homeComponents/home/home.component';
@@ -56,6 +56,11 @@ import { ManageValidationComponent } from './components/validationComponents/man
 import { ValidationTableComponent } from './components/validationComponents/validation-table/validation-table.component';
 import {InputSwitchModule} from "primeng/inputswitch";
 import { ChatComponent } from './components/studentComponents/chat/chat.component';
+import {DialogModule} from "primeng/dialog";
+import { AssignQuizComponent } from './components/quizComponents/assign-quiz/assign-quiz.component';
+import { UnAssignQuizComponent } from './components/quizComponents/un-assign-quiz/un-assign-quiz.component';
+import { TempQuestionComponent } from './components/quizComponents/temp-question/temp-question.component';
+import { ManageTempQuestionComponent } from './components/quizComponents/manage-temp-question/manage-temp-question.component';
 
 @NgModule({
   declarations: [
@@ -88,31 +93,37 @@ import { ChatComponent } from './components/studentComponents/chat/chat.componen
     ValidationComponent,
     ManageValidationComponent,
     ValidationTableComponent,
-    ChatComponent
+    ChatComponent,
+    AssignQuizComponent,
+    UnAssignQuizComponent,
+    TempQuestionComponent,
+    ManageTempQuestionComponent
   ],
-    imports: [
-        BrowserModule,
-        RouterModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        AvatarModule,
-        ButtonModule,
-        RippleModule,
-        MenuModule,
-        SidebarModule,
-        InputTextModule,
-        TableModule,
-        FormsModule,
-        ToastModule,
-        ConfirmDialogModule,
-        CardModule,
-        DropdownModule,
-        DataViewModule,
-        RatingModule,
-        TagModule,
-        InputSwitchModule
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AvatarModule,
+    ButtonModule,
+    RippleModule,
+    MenuModule,
+    SidebarModule,
+    InputTextModule,
+    TableModule,
+    FormsModule,
+    ToastModule,
+    ConfirmDialogModule,
+    CardModule,
+    DropdownModule,
+    DataViewModule,
+    RatingModule,
+    TagModule,
+    InputSwitchModule,
+    DialogModule,
+    ReactiveFormsModule
+  ],
   providers: [
     LevelService,
     QuestionService,

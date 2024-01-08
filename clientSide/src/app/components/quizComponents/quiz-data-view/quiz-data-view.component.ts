@@ -10,31 +10,36 @@ import {QuizRespDto} from "../../../models/quiz/quiz-resp-dto.model";
 export class QuizDataViewComponent {
 
   @Input()
-  quizzes!: Array<QuizDto>;
+  quizzes!: Array<QuizRespDto>;
 
-  // getSeverity(quiz: QuizRespDto) {
-  //   switch (quiz) {
-  //     case 'INSTOCK':
-  //       return 'success';
-  //
-  //     case 'LOWSTOCK':
-  //       return 'warning';
-  //
-  //     case 'OUTOFSTOCK':
-  //       return 'danger';
-  //
-  //     default:
-  //       return null;
-  //   }
-  // };
+  getSeverity(answersAccess: boolean) {
+    switch (answersAccess) {
+      case true:
+        return 'success';
+      // case false:
+      //   return 'warning';
+      case false:
+        return 'danger';
+      default:
+        return null;
+    }
+  };
 
 
   @Output()
-  delete: EventEmitter<QuizDto> = new EventEmitter<QuizDto>();
+  delete: EventEmitter<QuizRespDto> = new EventEmitter<QuizRespDto>();
 
   @Output()
   update: EventEmitter<QuizRespDto> = new EventEmitter<QuizRespDto>();
 
+  @Output()
+  assign: EventEmitter<QuizRespDto> = new EventEmitter<QuizRespDto>();
+
+  @Output()
+  unAssign: EventEmitter<QuizRespDto> = new EventEmitter<QuizRespDto>();
+
+  @Output()
+  question: EventEmitter<QuizRespDto> = new EventEmitter<QuizRespDto>();
   ngOnInit() {
   }
 
@@ -45,4 +50,17 @@ export class QuizDataViewComponent {
   onUpdate(quiz: QuizRespDto) {
     this.update.emit(quiz)
   }
+
+  onAssign(quiz: QuizDto){
+    this.assign.emit(quiz);
+  }
+
+  unassigned(quiz: QuizDto){
+    this.unAssign.emit(quiz);
+  }
+
+  onQuestion(quiz: QuizDto){
+    this.question.emit(quiz);
+  }
+
 }

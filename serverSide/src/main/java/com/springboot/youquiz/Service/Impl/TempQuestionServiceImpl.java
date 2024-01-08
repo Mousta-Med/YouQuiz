@@ -1,5 +1,6 @@
 package com.springboot.youquiz.Service.Impl;
 
+import com.springboot.youquiz.Dto.RespDto.TempQuestionRespDto;
 import com.springboot.youquiz.Dto.TempQuestionDto;
 import com.springboot.youquiz.Model.Question;
 import com.springboot.youquiz.Model.Quiz;
@@ -34,13 +35,13 @@ public class TempQuestionServiceImpl implements TempQuestionService {
 
 
     @Override
-    public TempQuestionDto save(TempQuestionDto tempQuestionDto) {
+    public TempQuestionRespDto save(TempQuestionDto tempQuestionDto) {
         TempQuestion tempQuestion = modelMapper.map(tempQuestionDto, TempQuestion.class);
         Quiz quiz = quizRepository.findById(tempQuestionDto.getQuizId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Quiz not found"));
         Question question = questionRepository.findById(tempQuestionDto.getQuestionId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "TempQuestion not found"));
         tempQuestion.setQuiz(quiz);
         tempQuestion.setQuestion(question);
-        return modelMapper.map(tempQuestionRepository.save(tempQuestion), TempQuestionDto.class);
+        return modelMapper.map(tempQuestionRepository.save(tempQuestion), TempQuestionRespDto.class);
     }
 
     @Override
@@ -50,29 +51,34 @@ public class TempQuestionServiceImpl implements TempQuestionService {
     }
 
     @Override
-    public TempQuestionDto update(Long id, TempQuestionDto tempQuestionDto) {
+    public TempQuestionRespDto update(Long id, TempQuestionDto tempQuestionDto) {
         TempQuestion existingTempQuestion = tempQuestionRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "TempQuestion not found with id " + id));
         Question question = questionRepository.findById(tempQuestionDto.getQuestionId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "TempQuestion not found"));
         Quiz quiz = quizRepository.findById(tempQuestionDto.getQuizId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Quiz not found"));
         existingTempQuestion.setQuiz(quiz);
         existingTempQuestion.setQuestion(question);
-        return modelMapper.map(tempQuestionRepository.save(existingTempQuestion), TempQuestionDto.class);
+        return modelMapper.map(tempQuestionRepository.save(existingTempQuestion), TempQuestionRespDto.class);
     }
 
     @Override
-    public TempQuestionDto findOne(Long id) {
+    public TempQuestionRespDto findOne(Long id) {
         return tempQuestionRepository.findById(id)
-                .map(tempQuestion -> modelMapper.map(tempQuestion, TempQuestionDto.class)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "TempQuestion not found with id " + id));
+                .map(tempQuestion -> modelMapper.map(tempQuestion, TempQuestionRespDto.class)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "TempQuestion not found with id " + id));
     }
 
     @Override
-    public List<TempQuestionDto> findAll() {
-        return tempQuestionRepository.findAll().stream().map(tempQuestion -> modelMapper.map(tempQuestion, TempQuestionDto.class)).collect(Collectors.toList());
+    public List<TempQuestionRespDto> findAll() {
+        return tempQuestionRepository.findAll().stream().map(tempQuestion -> modelMapper.map(tempQuestion, TempQuestionRespDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Page<TempQuestionDto> findWithPagination(Pageable pageable) {
+    public List<TempQuestionRespDto> findTempQuestionByQuizId(Long quizId) {
+        return tempQuestionRepository.findTempQuestionsByQuizId(quizId).stream().map(tempQuestion -> modelMapper.map(tempQuestion, TempQuestionRespDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<TempQuestionRespDto> findWithPagination(Pageable pageable) {
         Page<TempQuestion> tempQuestionsPage = tempQuestionRepository.findAll(pageable);
-        return tempQuestionsPage.map(tempQuestion -> modelMapper.map(tempQuestion, TempQuestionDto.class));
+        return tempQuestionsPage.map(tempQuestion -> modelMapper.map(tempQuestion, TempQuestionRespDto.class));
     }
 }

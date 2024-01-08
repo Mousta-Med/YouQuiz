@@ -1,0 +1,68 @@
+<div class=" p-dialog-content" [formGroup]="assignQuizForm">
+  <div class="flex flex-column gap-3 mt-3 ">
+<!--    <div class="flex gap-3">-->
+<!--      <div class="w-full">-->
+<!--        <label class="block mb-1 text-color text-base" for="score">Score</label>-->
+<!--        <span-->
+<!--          class="p-input-icon-left w-full">-->
+<!--          <i class="pi pi-user"></i>-->
+<!--          <input class="p-inputtext p-component p-element w-full" formControlName="score" id="score"-->
+<!--                 placeholder="Enter Score" type="number">-->
+<!--        </span>-->
+<!--      </div>-->
+<!--      <div class="w-full">-->
+<!--        <label class="block mb-1 text-color text-base" for="chanceNumber">Chance Number</label>-->
+<!--        <span-->
+<!--          class="p-input-icon-left w-full">-->
+<!--        <i class="pi pi-user"></i>-->
+<!--        <input class="p-inputtext p-component p-element w-full" formControlName="chanceNumber" id="chanceNumber"-->
+<!--               placeholder="Enter Number Of Chances" type="number">-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div>
+      <label class="block mb-1 text-color text-base" for="date">Date</label>
+      <span class="p-input-icon-left w-full">
+      <i class="pi pi-calendar"></i>
+      <input class="p-inputtext p-component p-element w-full" formControlName="date" id="date"
+             type="date">
+      </span>
+    </div>
+    <div class="flex gap-3">
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base" for="studentId">Student</label>
+        <span
+          class="p-input-icon-left w-full">
+          <i class="pi pi-file"></i>
+          <select class="p-inputtext p-component p-element w-full" id="studentId" formControlName="studentId">
+            <option value="0">Select Option</option>
+            <option *ngFor="let student of students" [value]="student?.id">{{student?.lastName}}</option>
+          </select>
+        </span>
+      </div>
+    <div class="w-full">
+      <label class="block mb-1 text-color text-base" for="notes">Notes</label>
+      <span
+        class="p-input-icon-left w-full">
+        <i class="pi pi-briefcase"></i>
+        <input class="p-inputtext p-component p-element w-full" id="notes"
+               formControlName="notes" placeholder="Enter Some Notes" type="text">
+        </span>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="p-dialog-footer">
+  <div class="flex gap-3 justify-content-end border-top-1 surface-border pt-5">
+    <button (click)="onCancel()" class="p-element p-ripple p-button-text p-button p-component">
+      <span
+        class="p-button-label">Cancel
+      </span>
+    </button>
+    <button [disabled]="assignQuizForm.invalid" (click)="onSubmit()" class="p-element p-ripple p-button-rounded p-button p-component">
+      <span
+        class="p-button-label">Submit
+      </span>
+    </button>
+  </div>
+</div>

@@ -1,34 +1,43 @@
 <div class="mt-3">
-<p-dataView #dv [value]="quizzes">
-  <ng-template let-quiz pTemplate="listItem">
-    <div class="col-12">
-      <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-        <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
-             [src]="'https://altc.alt.ac.uk/blog/wp-content/uploads/sites/1112/2022/08/Blog-Cover-Guidlines-707x409.png'"/>
-        <div
-          class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-          <div class="flex flex-column align-items-center sm:align-items-start gap-3">
-            <div class="text-2xl font-bold text-900">{{ quiz.comment }}</div>
-            <div>
-              <span>Answer Access: <span class="pi" [ngClass]="{'pi-check': quiz.answersAccess, 'pi-times': !quiz.answersAccess}"></span> / </span>
-              <span>Access After Test: <span class="pi" [ngClass]="{'pi-check': quiz.resultAccessAfterTest, 'pi-times': !quiz.resultAccessAfterTest}"></span></span>
-            </div>
-            <div class="flex align-items-center gap-3">
+  <p-dataView #dv [value]="quizzes">
+    <ng-template let-quiz pTemplate="listItem">
+      <div class="col-12">
+        <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+          <img [src]="'https://altc.alt.ac.uk/blog/wp-content/uploads/sites/1112/2022/08/Blog-Cover-Guidlines-707x409.png'"
+               class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"/>
+          <div
+            class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+            <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+              <div class="text-2xl font-bold text-900">{{ quiz.comment }}</div>
+              <div>
+                <span>Answer Access: <span [ngClass]="{'pi-check': quiz.answersAccess, 'pi-times': !quiz.answersAccess}"
+                                           class="pi"></span> | </span>
+                <span>Access After Test: <span [ngClass]="{'pi-check': quiz.resultAccessAfterTest, 'pi-times': !quiz.resultAccessAfterTest}"
+                                               class="pi"></span></span>
+              </div>
+              <div class="flex align-items-center gap-3">
                             <span class="flex align-items-center gap-2">
                                 <i class="pi pi-user"></i>
                                 <span class="font-semibold">{{ quiz.teacher.firstName }}</span>
                             </span>
-              <p-tag [value]="quiz.inventoryStatus" [severity]=""></p-tag>
+<!--                <p-tag [severity]="getSeverity(quiz.answersAccess)" [value]="quiz.answersAccess"></p-tag>-->
+              </div>
             </div>
-          </div>
-          <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-            <span class="text-2xl font-semibold"><span class="text-2xl font-semibold pi pi-chart-line"></span>{{quiz.successResult}}</span>
-            <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded"
-                    [disabled]="quiz.inventoryStatus === 'OUTOFSTOCK'"></button>
+            <div class="flex gap-3">
+              <button (click)="onQuestion(quiz)" class="md:align-self-end mb-2 p-button-rounded" label="Questions" icon="pi pi-question"
+                      pButton></button>
+              <button (click)="unassigned(quiz)" class="md:align-self-end mb-2 p-button-rounded" icon="pi pi-users"
+                      pButton></button>
+              <div class="flex sm:flex-column align-items-center gap-3">
+                <span class="text-2xl font-semibold"><span
+                  class="text-2xl font-semibold pi pi-chart-line"></span>{{ quiz.successResult }}</span>
+                <button (click)="onAssign(quiz)" [disabled]="false" class="md:align-self-end mb-2 p-button-rounded p-button-success"
+                        icon="pi pi-user-plus" pButton></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </ng-template>
-</p-dataView>
+    </ng-template>
+  </p-dataView>
 </div>

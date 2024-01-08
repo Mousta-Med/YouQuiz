@@ -18,7 +18,7 @@ export class ManageQuizComponent {
   quiz: QuizDto = {};
 
   @Input()
-  operation: 'create' | 'update' = 'create'
+  operation: 'create' | 'update' | 'questions' = 'create'
 
   @Output()
   submit: EventEmitter<QuizDto> = new EventEmitter<QuizDto>();

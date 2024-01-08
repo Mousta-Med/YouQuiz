@@ -1,0 +1,17 @@
+<p-table [tableStyle]="{ 'min-width': '50rem' }" [value]="assignQuizzes">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Student</th>
+      <th>UnAssign</th>
+    </tr>
+  </ng-template>
+  <ng-template let-assignQuiz pTemplate="body">
+    <tr>
+      <td>{{ assignQuiz.student.firstName }}</td>
+      <td class="-m-3">
+        <button (click)="onDelete(assignQuiz)" class="p-button-rounded p-button-danger p-button-text" icon="pi pi-user-minus" pButton pRipple
+                type="button"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

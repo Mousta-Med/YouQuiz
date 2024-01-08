@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +40,10 @@ public class AssignQuizServiceImpl implements AssignQuizService {
 
     @Override
     public AssignQuizRespDto save(AssignQuizDto assignQuizDto) {
+        Optional<AssignQuiz> existingAssignQuiz = assignQuizRepository.findAssignQuizByStudentIdAndQuizId(assignQuizDto.getStudentId(), assignQuizDto.getQuizId());
+        if (existingAssignQuiz.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Assign Quiz Already Exist");
+        }
         AssignQuiz assignQuiz = modelMapper.map(assignQuizDto, AssignQuiz.class);
         Quiz quiz = quizRepository.findById(assignQuizDto.getQuizId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Quiz Not Found"));
         Student student = studentRepository.findById(assignQuizDto.getStudentId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found"));
@@ -80,5 +85,10 @@ public class AssignQuizServiceImpl implements AssignQuizService {
     public Page<AssignQuizRespDto> findWithPagination(Pageable pageable) {
         Page<AssignQuiz> assignQuizPage = assignQuizRepository.findAll(pageable);
         return assignQuizPage.map(answer -> modelMapper.map(answer, AssignQuizRespDto.class));
+    }
+
+    @Override
+    public List<AssignQuizRespDto> findAssignQuizsByQuizId(Long quiz_id) {
+        return assignQuizRepository.findAssignQuizsByQuizId(quiz_id).stream().map(assignQuiz -> modelMapper.map(assignQuiz, AssignQuizRespDto.class)).collect(Collectors.toList());
     }
 }

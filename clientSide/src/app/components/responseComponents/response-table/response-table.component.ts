@@ -8,6 +8,7 @@ import {ResponseDto} from "../../../models/response/response-dto.model";
   styleUrls: ['./response-table.component.scss']
 })
 export class ResponseTableComponent {
+
   @Input()
   responses!: Array<ResponseRespDto>;
 

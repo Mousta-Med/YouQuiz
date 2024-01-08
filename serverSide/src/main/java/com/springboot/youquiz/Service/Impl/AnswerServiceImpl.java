@@ -1,6 +1,7 @@
 package com.springboot.youquiz.Service.Impl;
 
 import com.springboot.youquiz.Dto.AnswerDto;
+import com.springboot.youquiz.Dto.RespDto.AnswerRespDto;
 import com.springboot.youquiz.Model.Answer;
 import com.springboot.youquiz.Model.AssignQuiz;
 import com.springboot.youquiz.Model.Validation;
@@ -34,13 +35,13 @@ public class AnswerServiceImpl implements AnswerService {
 
 
     @Override
-    public AnswerDto save(AnswerDto answerDto) {
+    public AnswerRespDto save(AnswerDto answerDto) {
         Answer answer = modelMapper.map(answerDto, Answer.class);
         Validation validation = validationRepository.findById(answerDto.getValidationId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Validation not found with"));
         AssignQuiz assignQuiz = assignQuizRepository.findById(answerDto.getAssignQuizId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "AssignQuiz not found with"));
         answer.setAssignQuiz(assignQuiz);
         answer.setValidation(validation);
-        return modelMapper.map(answerRepository.save(answer), AnswerDto.class);
+        return modelMapper.map(answerRepository.save(answer), AnswerRespDto.class);
     }
 
     @Override
@@ -50,30 +51,30 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public AnswerDto update(Long id, AnswerDto answerDto) {
+    public AnswerRespDto update(Long id, AnswerDto answerDto) {
         Answer existingAnswer = answerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Answer not found with id " + id));
         Validation validation = validationRepository.findById(answerDto.getValidationId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Validation not found with"));
         AssignQuiz assignQuiz = assignQuizRepository.findById(answerDto.getAssignQuizId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "AssignQuiz not found with"));
         existingAnswer.setAssignQuiz(assignQuiz);
         existingAnswer.setValidation(validation);
         existingAnswer.setPlayed(answerDto.getPlayed());
-        return modelMapper.map(answerRepository.save(existingAnswer), AnswerDto.class);
+        return modelMapper.map(answerRepository.save(existingAnswer), AnswerRespDto.class);
     }
 
     @Override
-    public AnswerDto findOne(Long id) {
+    public AnswerRespDto findOne(Long id) {
         return answerRepository.findById(id)
-                .map(answer -> modelMapper.map(answer, AnswerDto.class)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Answer not found with id " + id));
+                .map(answer -> modelMapper.map(answer, AnswerRespDto.class)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Answer not found with id " + id));
     }
 
     @Override
-    public List<AnswerDto> findAll() {
-        return answerRepository.findAll().stream().map(answer -> modelMapper.map(answer, AnswerDto.class)).collect(Collectors.toList());
+    public List<AnswerRespDto> findAll() {
+        return answerRepository.findAll().stream().map(answer -> modelMapper.map(answer, AnswerRespDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Page<AnswerDto> findWithPagination(Pageable pageable) {
+    public Page<AnswerRespDto> findWithPagination(Pageable pageable) {
         Page<Answer> answersPage = answerRepository.findAll(pageable);
-        return answersPage.map(answer -> modelMapper.map(answer, AnswerDto.class));
+        return answersPage.map(answer -> modelMapper.map(answer, AnswerRespDto.class));
     }
 }

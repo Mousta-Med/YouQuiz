@@ -1,0 +1,17 @@
+<p-table [tableStyle]="{ 'min-width': '50rem' }" [value]="tempQuestions">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Question</th>
+      <th>Remove</th>
+    </tr>
+  </ng-template>
+  <ng-template let-tempQuestion pTemplate="body">
+    <tr>
+      <td>{{ tempQuestion.question.questionText }}</td>
+      <td class="-m-3">
+        <button (click)="onDelete(tempQuestion)" class="p-button-rounded p-button-danger p-button-text" icon="pi pi-trash" pButton pRipple
+                type="button"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

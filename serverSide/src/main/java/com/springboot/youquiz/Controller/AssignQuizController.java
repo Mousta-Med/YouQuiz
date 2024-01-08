@@ -35,6 +35,10 @@ public class AssignQuizController {
     public ResponseEntity<AssignQuizRespDto> findOneAssignQuiz(@PathVariable Long id) {
         return ResponseEntity.ok(assignQuizService.findOne(id));
     }
+    @GetMapping("/students/{quiz_id}")
+    public ResponseEntity<List<AssignQuizRespDto>> findAssignQuizsByQuizId(@PathVariable Long quiz_id) {
+        return ResponseEntity.ok(assignQuizService.findAssignQuizsByQuizId(quiz_id));
+    }
 
     @PostMapping
     public ResponseEntity<AssignQuizRespDto> saveAssignQuiz(@Valid @RequestBody AssignQuizDto assignQuizDto) {
