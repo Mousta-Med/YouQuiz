@@ -20,8 +20,8 @@ export class ManageTempQuestionComponent implements OnInit{
   cancel: EventEmitter<void> = new EventEmitter<void>();
 
   tempQuestionForm: FormGroup = new FormGroup({
-    questionId:  new FormControl('0',[Validators.required]),
-    time: new FormControl('0', [Validators.required]),
+    questionId:  new FormControl('0',[Validators.required, Validators.min(1)]),
+    time: new FormControl('0', [Validators.required, Validators.min(0)]),
   });
   constructor(
     private questionService: QuestionService
@@ -50,6 +50,9 @@ export class ManageTempQuestionComponent implements OnInit{
 
   onCancel() {
     this.cancel.emit();
-    this.tempQuestionForm.reset();
+    this.tempQuestionForm.setValue({
+      questionId:  0,
+      time: 0
+    });
   }
 }

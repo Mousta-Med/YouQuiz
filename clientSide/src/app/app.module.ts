@@ -61,6 +61,8 @@ import { AssignQuizComponent } from './components/quizComponents/assign-quiz/ass
 import { UnAssignQuizComponent } from './components/quizComponents/un-assign-quiz/un-assign-quiz.component';
 import { TempQuestionComponent } from './components/quizComponents/temp-question/temp-question.component';
 import { ManageTempQuestionComponent } from './components/quizComponents/manage-temp-question/manage-temp-question.component';
+import { StudentComponent } from './components/studentComponents/student/student.component';
+import { ChatsComponent } from './components/studentComponents/chats/chats.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,9 @@ import { ManageTempQuestionComponent } from './components/quizComponents/manage-
     AssignQuizComponent,
     UnAssignQuizComponent,
     TempQuestionComponent,
-    ManageTempQuestionComponent
+    ManageTempQuestionComponent,
+    StudentComponent,
+    ChatsComponent
   ],
   imports: [
     BrowserModule,

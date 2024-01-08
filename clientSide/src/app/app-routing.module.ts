@@ -11,10 +11,12 @@ import {SubjectComponent} from "./components/subjectComponents/subject/subject.c
 import {QuizComponent} from "./components/quizComponents/quiz/quiz.component";
 import {ValidationComponent} from "./components/validationComponents/validation/validation.component";
 import {ChatComponent} from "./components/studentComponents/chat/chat.component";
+import {StudentComponent} from "./components/studentComponents/student/student.component";
+import {ChatsComponent} from "./components/studentComponents/chats/chats.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'teacher',
     component: HomeComponent,
     children: [
       {
@@ -52,8 +54,18 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'student/chat/:userId',
-    component: ChatComponent,
+    path: 'student',
+    component: StudentComponent,
+    children: [
+      {
+        path: 'chats',
+        component: ChatsComponent,
+      },
+      {
+        path: 'chat/:userId',
+        component: ChatComponent,
+      }
+    ]
   },
   {
     path: '**', pathMatch: 'full',

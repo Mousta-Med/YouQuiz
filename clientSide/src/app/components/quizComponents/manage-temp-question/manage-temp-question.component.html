@@ -1,6 +1,6 @@
 <div class=" p-dialog-content" [formGroup]="tempQuestionForm">
   <div class="flex flex-column gap-3 mt-3 ">
-    <div class="flex gap-3">
+    <div class="flex gap-3 align-items-center">
       <div class="w-full">
         <label class="block mb-1 text-color text-base" for="questionId">Question</label>
         <span
@@ -21,20 +21,19 @@
                formControlName="time" placeholder="Enter Time" type="number">
         </span>
       </div>
-    </div>
-  </div>
-</div>
-<div class="p-dialog-footer">
-  <div class="flex gap-3 justify-content-end border-top-1 surface-border pt-5">
-    <button (click)="onCancel()" class="p-element p-ripple p-button-text p-button p-component">
+      <div class="flex justify-content-around surface-border w-full pt-2">
+        <button (click)="onCancel()" class="p-element p-ripple p-button-text p-button p-component">
       <span
         class="p-button-label">Cancel
       </span>
-    </button>
-    <button [disabled]="tempQuestionForm.invalid" (click)="onSubmit()" class="p-element p-ripple p-button-rounded p-button p-component">
+        </button>
+        <button (click)="onSubmit()" [disabled]="tempQuestionForm.invalid"
+                class="p-element p-ripple p-button-rounded p-button p-component">
       <span
         class="p-button-label">Submit
       </span>
-    </button>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
