@@ -13,6 +13,7 @@ import {ValidationComponent} from "./components/validationComponents/validation/
 import {ChatComponent} from "./components/studentComponents/chat/chat.component";
 import {StudentComponent} from "./components/studentComponents/student/student.component";
 import {ChatsComponent} from "./components/studentComponents/chats/chats.component";
+import {StudentQuizComponent} from "./components/studentComponents/student-quiz/student-quiz.component";
 
 const routes: Routes = [
   {
@@ -60,11 +61,18 @@ const routes: Routes = [
       {
         path: 'chats',
         component: ChatsComponent,
+        children: [
+          {
+            path: 'chat/:userId',
+            component: ChatComponent,
+          }
+        ]
       },
       {
-        path: 'chat/:userId',
-        component: ChatComponent,
+        path: 'quizzes',
+        component: StudentQuizComponent
       }
+
     ]
   },
   {

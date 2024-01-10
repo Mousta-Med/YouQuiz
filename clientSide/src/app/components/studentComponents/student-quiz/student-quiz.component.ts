@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {QuizRespDto} from "../../../models/quiz/quiz-resp-dto.model";
 
 @Component({
   selector: 'app-student-quiz',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class StudentQuizComponent {
 
+  quizzes!: Array<QuizRespDto>;
 }
