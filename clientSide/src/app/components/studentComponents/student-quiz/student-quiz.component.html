@@ -8,17 +8,17 @@
           <div
             class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
             <div class="flex flex-column align-items-center sm:align-items-start gap-3">
-              <div class="text-2xl font-bold text-900">{{ quiz.comment }}</div>
+              <div class="text-2xl font-bold text-900">{{ quiz.quiz.comment }}</div>
               <div>
-                <span>Answer Access: <span [ngClass]="{'pi-check': quiz.answersAccess, 'pi-times': !quiz.answersAccess}"
+                <span>Answer Access: <span [ngClass]="{'pi-check': quiz.quiz.answersAccess, 'pi-times': !quiz.quiz.answersAccess}"
                                            class="pi"></span> | </span>
-                <span>Access After Test: <span [ngClass]="{'pi-check': quiz.resultAccessAfterTest, 'pi-times': !quiz.resultAccessAfterTest}"
+                <span>Access After Test: <span [ngClass]="{'pi-check': quiz.quiz.resultAccessAfterTest, 'pi-times': !quiz.quiz.resultAccessAfterTest}"
                                                class="pi"></span></span>
               </div>
               <div class="flex align-items-center gap-3">
                             <span class="flex align-items-center gap-2">
                                 <i class="pi pi-user"></i>
-                                <span class="font-semibold">{{ quiz.teacher.firstName }}</span>
+                                <span class="font-semibold">{{ 'Teacher' }}</span>
                             </span>
                 <!--                <p-tag [severity]="getSeverity(quiz.answersAccess)" [value]="quiz.answersAccess"></p-tag>-->
               </div>
@@ -26,9 +26,9 @@
             <div class="flex gap-3">
               <div class="flex sm:flex-column align-items-center gap-3">
                 <span class="text-2xl font-semibold"><span
-                  class="text-2xl font-semibold pi pi-chart-line"></span>{{ quiz.successResult }}</span>
-                <button [disabled]="false" class="md:align-self-end mb-2 p-button-rounded p-button-success"
-                        icon="pi pi-user-plus" pButton></button>
+                  class="text-2xl font-semibold pi pi-chart-line"></span>{{ quiz.quiz.successResult }}</span>
+                <button (click)="playQuiz(quiz)" [disabled]="false" class="md:align-self-end mb-2 p-button-rounded p-button-success"
+                        icon="" pButton>Play</button>
               </div>
             </div>
           </div>
@@ -37,3 +37,9 @@
     </ng-template>
   </p-dataView>
 </div>
+<p-dialog #dialog (onShow)="dialog.maximize()" [(visible)]="dialogVisible" [modal]="true" [dismissableMask]="true" [draggable]="false" [resizable]="false"
+           header="QUIZ">
+<app-quiz-question>
+
+</app-quiz-question>
+</p-dialog>

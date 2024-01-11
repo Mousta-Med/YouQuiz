@@ -64,6 +64,8 @@ import { ManageTempQuestionComponent } from './components/quizComponents/manage-
 import { StudentComponent } from './components/studentComponents/student/student.component';
 import { ChatsComponent } from './components/studentComponents/chats/chats.component';
 import { StudentQuizComponent } from './components/studentComponents/student-quiz/student-quiz.component';
+import { PlayQuizComponent } from './components/studentComponents/play-quiz/play-quiz.component';
+import { QuizQuestionComponent } from './components/studentComponents/quiz-question/quiz-question.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,9 @@ import { StudentQuizComponent } from './components/studentComponents/student-qui
     ManageTempQuestionComponent,
     StudentComponent,
     ChatsComponent,
-    StudentQuizComponent
+    StudentQuizComponent,
+    PlayQuizComponent,
+    QuizQuestionComponent
   ],
   imports: [
     BrowserModule,

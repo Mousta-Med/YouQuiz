@@ -14,6 +14,7 @@ import {ChatComponent} from "./components/studentComponents/chat/chat.component"
 import {StudentComponent} from "./components/studentComponents/student/student.component";
 import {ChatsComponent} from "./components/studentComponents/chats/chats.component";
 import {StudentQuizComponent} from "./components/studentComponents/student-quiz/student-quiz.component";
+import {PlayQuizComponent} from "./components/studentComponents/play-quiz/play-quiz.component";
 
 const routes: Routes = [
   {
@@ -71,6 +72,10 @@ const routes: Routes = [
       {
         path: 'quizzes',
         component: StudentQuizComponent
+      },
+      {
+        path: 'play/:quizId',
+        component: PlayQuizComponent
       }
 
     ]
