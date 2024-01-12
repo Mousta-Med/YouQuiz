@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {QuizRespDto} from "../../../models/quiz/quiz-resp-dto.model";
 import {AssignQuizService} from "../../../services/assignQuiz/assign-quiz.service";
 import {AssignQuizDto} from "../../../models/assign-quiz-dto.model";
+import {TempQuestionDto} from "../../../models/temp-question-dto.model";
+import {TempQuestionService} from "../../../services/tempQuestion/temp-question.service";
 
 @Component({
   selector: 'app-student-quiz',
@@ -17,10 +19,13 @@ export class StudentQuizComponent implements OnInit{
 
   dialogVisible: boolean = false;
 
+  tempQuestions: Array<TempQuestionDto> = [];
   constructor(
     private assignQuizService: AssignQuizService,
+    private tempQuestionService: TempQuestionService
   ) {
   }
+
   ngOnInit() {
     this.assignQuizService.getAssignQuizs().subscribe({
       next: (data)=> {
@@ -30,7 +35,17 @@ export class StudentQuizComponent implements OnInit{
     })
   }
 
+  findTempQuestionByQuizId(id: number|undefined) {
+    this.tempQuestionService.findTempQuestionByQuizId(id).subscribe({
+      next: (data) => {
+        this.tempQuestions = data;
+      }
+    })
+  }
+
   playQuiz(quiz: AssignQuizDto) {
+    this.findTempQuestionByQuizId(quiz.quiz?.id);
+    this.quiz = quiz;
     this.dialogVisible = true;
   }
 }

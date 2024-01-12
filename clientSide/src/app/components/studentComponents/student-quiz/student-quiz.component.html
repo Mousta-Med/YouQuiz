@@ -39,7 +39,9 @@
 </div>
 <p-dialog #dialog (onShow)="dialog.maximize()" [(visible)]="dialogVisible" [modal]="true" [dismissableMask]="true" [draggable]="false" [resizable]="false"
            header="QUIZ">
-<app-quiz-question>
-
+<app-quiz-question
+  [quiz]="quiz"
+  [tempQuestion]="tempQuestions"
+>
 </app-quiz-question>
 </p-dialog>
