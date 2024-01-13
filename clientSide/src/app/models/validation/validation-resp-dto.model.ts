@@ -4,7 +4,7 @@ import {ResponseDto} from "../response/response-dto.model";
 export interface ValidationRespDto {
   id?: number;
   points?: number;
-  question: QuestionDto;
+  question?: QuestionDto;
   response?: ResponseDto;
 // answers?: Array<AnswerDto>;
 }

@@ -36,6 +36,10 @@ public class ValidationController {
     public ResponseEntity<ValidationRespDto> findOneValidation(@PathVariable Long id) {
         return ResponseEntity.ok(validationService.findOne(id));
     }
+    @GetMapping("/question/{id}")
+    public ResponseEntity<List<ValidationRespDto>> findValidationByQuestionId(@PathVariable Long id) {
+        return ResponseEntity.ok(validationService.findValidationsByQuestionId(id));
+    }
 
     @PostMapping
     public ResponseEntity<ValidationRespDto> saveValidation(@Valid @RequestBody ValidationDto validationDto) {

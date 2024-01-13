@@ -37,6 +37,9 @@ export class ValidationService {
     });
     return this.operation;
   }
+  getValidationsByQuiz(id: number | undefined): Observable<ValidationRespDto[]> {
+    return  this.http.get<ValidationRespDto[]>(`${this.validationUrl}/question/${id}`);
+  }
 
   getOneValidation(id: number): Observable<ValidationRespDto> {
     return this.http.get<ValidationRespDto>(`${this.validationUrl}/${id}`);

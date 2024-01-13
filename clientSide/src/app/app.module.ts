@@ -49,23 +49,30 @@ import {QuizDataViewComponent} from './components/quizComponents/quiz-data-view/
 import {DataViewModule} from "primeng/dataview";
 import {RatingModule} from "primeng/rating";
 import {TagModule} from "primeng/tag";
-import { ManageQuizComponent } from './components/quizComponents/manage-quiz/manage-quiz.component';
-import { ResponseTableComponent } from './components/responseComponents/response-table/response-table.component';
-import { ValidationComponent } from './components/validationComponents/validation/validation.component';
-import { ManageValidationComponent } from './components/validationComponents/manage-validation/manage-validation.component';
-import { ValidationTableComponent } from './components/validationComponents/validation-table/validation-table.component';
+import {ManageQuizComponent} from './components/quizComponents/manage-quiz/manage-quiz.component';
+import {ResponseTableComponent} from './components/responseComponents/response-table/response-table.component';
+import {ValidationComponent} from './components/validationComponents/validation/validation.component';
+import {
+  ManageValidationComponent
+} from './components/validationComponents/manage-validation/manage-validation.component';
+import {ValidationTableComponent} from './components/validationComponents/validation-table/validation-table.component';
 import {InputSwitchModule} from "primeng/inputswitch";
-import { ChatComponent } from './components/studentComponents/chat/chat.component';
+import {ChatComponent} from './components/studentComponents/chat/chat.component';
 import {DialogModule} from "primeng/dialog";
-import { AssignQuizComponent } from './components/quizComponents/assign-quiz/assign-quiz.component';
-import { UnAssignQuizComponent } from './components/quizComponents/un-assign-quiz/un-assign-quiz.component';
-import { TempQuestionComponent } from './components/quizComponents/temp-question/temp-question.component';
-import { ManageTempQuestionComponent } from './components/quizComponents/manage-temp-question/manage-temp-question.component';
-import { StudentComponent } from './components/studentComponents/student/student.component';
-import { ChatsComponent } from './components/studentComponents/chats/chats.component';
-import { StudentQuizComponent } from './components/studentComponents/student-quiz/student-quiz.component';
-import { PlayQuizComponent } from './components/studentComponents/play-quiz/play-quiz.component';
-import { QuizQuestionComponent } from './components/studentComponents/quiz-question/quiz-question.component';
+import {AssignQuizComponent} from './components/quizComponents/assign-quiz/assign-quiz.component';
+import {UnAssignQuizComponent} from './components/quizComponents/un-assign-quiz/un-assign-quiz.component';
+import {TempQuestionComponent} from './components/quizComponents/temp-question/temp-question.component';
+import {
+  ManageTempQuestionComponent
+} from './components/quizComponents/manage-temp-question/manage-temp-question.component';
+import {StudentComponent} from './components/studentComponents/student/student.component';
+import {ChatsComponent} from './components/studentComponents/chats/chats.component';
+import {StudentQuizComponent} from './components/studentComponents/student-quiz/student-quiz.component';
+import {PlayQuizComponent} from './components/studentComponents/play-quiz/play-quiz.component';
+import {QuizQuestionComponent} from './components/studentComponents/quiz-question/quiz-question.component';
+import {StoreDevtools} from "@ngrx/store-devtools";
+import {StoreModule} from "@ngrx/store";
+import {NextQuestionReducer} from "./states/nextQuestion/nextQuestion.reducer";
 
 @NgModule({
   declarations: [
@@ -132,7 +139,8 @@ import { QuizQuestionComponent } from './components/studentComponents/quiz-quest
     TagModule,
     InputSwitchModule,
     DialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({nextQuestion: NextQuestionReducer}),
   ],
   providers: [
     LevelService,

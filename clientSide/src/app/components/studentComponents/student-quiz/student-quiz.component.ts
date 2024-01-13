@@ -30,7 +30,6 @@ export class StudentQuizComponent implements OnInit{
     this.assignQuizService.getAssignQuizs().subscribe({
       next: (data)=> {
         this.quizzes = data;
-        console.log(this.quizzes)
       }
     })
   }

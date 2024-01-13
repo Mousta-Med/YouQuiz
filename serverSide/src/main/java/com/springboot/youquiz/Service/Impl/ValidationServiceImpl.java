@@ -78,4 +78,9 @@ public class ValidationServiceImpl implements ValidationService {
         Page<Validation> validationsPage = validationRepository.findAll(pageable);
         return validationsPage.map(validation -> modelMapper.map(validation, ValidationRespDto.class));
     }
+
+    @Override
+    public List<ValidationRespDto> findValidationsByQuestionId(Long question_id) {
+        return validationRepository.findValidationsByQuestionId(question_id).stream().map(validation -> modelMapper.map(validation, ValidationRespDto.class)).collect(Collectors.toList());
+    }
 }
