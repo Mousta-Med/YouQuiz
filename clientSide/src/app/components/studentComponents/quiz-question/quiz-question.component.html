@@ -1,5 +1,15 @@
 <div class="text-center">
-<h2>{{quiz.quiz?.comment}}</h2>
-  <h4>{{tempQuestions[questionIndex]?.question?.questionText}}?</h4>
-  <button (click)="nextQuestion()">next</button>
+    <span>{{ tempQuestions[questionIndex]?.time }}</span>
+  <h2>{{ quiz.quiz?.comment }}</h2>
+  <div [formGroup]="answerFormGroup">
+    <h4>{{ tempQuestions[questionIndex]?.question?.questionText }}?</h4>
+    <div *ngFor="let validation of validations">
+    <p-radioButton formControlName="validationId" [value]="validation.response?.id" inputId="ny"></p-radioButton>
+      <label>{{validation.response?.response}}</label>
+    </div>
+    <button (click)="nextQuestion()" *ngIf="tempQuestions[questionIndex]?.time === 0" [disabled]="false"
+            class="md:align-self-end mb-2 p-button-rounded p-button-success"
+            icon="" pButton>Next
+    </button>
+  </div>
 </div>

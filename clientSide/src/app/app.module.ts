@@ -70,9 +70,10 @@ import {ChatsComponent} from './components/studentComponents/chats/chats.compone
 import {StudentQuizComponent} from './components/studentComponents/student-quiz/student-quiz.component';
 import {PlayQuizComponent} from './components/studentComponents/play-quiz/play-quiz.component';
 import {QuizQuestionComponent} from './components/studentComponents/quiz-question/quiz-question.component';
-import {StoreDevtools} from "@ngrx/store-devtools";
+import {StoreDevtools, StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {StoreModule} from "@ngrx/store";
-import {NextQuestionReducer} from "./states/nextQuestion/nextQuestion.reducer";
+import {CheckboxModule} from "primeng/checkbox";
+import {RadioButtonModule} from "primeng/radiobutton";
 
 @NgModule({
   declarations: [
@@ -140,7 +141,13 @@ import {NextQuestionReducer} from "./states/nextQuestion/nextQuestion.reducer";
     InputSwitchModule,
     DialogModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({nextQuestion: NextQuestionReducer}),
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+        maxAge: 25
+      }
+    ),
+    CheckboxModule,
+    RadioButtonModule
   ],
   providers: [
     LevelService,
