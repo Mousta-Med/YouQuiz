@@ -15,7 +15,7 @@ export const environment = {
     responseUrl: '/api/v1/response',
     validationUrl: '/api/v1/validation',
     cloudinaryUrl: 'https://api.cloudinary.com/v1_1/',
-    cloudinaryImageApi: 'https://779836233774492:vAqYwXog3QAV69zRYJHinpQv1-g@api.cloudinary.com/v1_1/dlqzkjt5k/resources/image',
-    cloudinaryVideoApi: 'https://779836233774492:vAqYwXog3QAV69zRYJHinpQv1-g@api.cloudinary.com/v1_1/dlqzkjt5k/resources/video',
+    cloudinaryImageApi: 'https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/dlqzkjt5k/resources/image',
+    cloudinaryVideoApi: 'https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/dlqzkjt5k/resources/video',
   }
 };
